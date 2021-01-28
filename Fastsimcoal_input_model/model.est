@@ -1,0 +1,37 @@
+//Population growth in zero model
+//Growth starts TDIV1
+
+// Search ranges and rules file
+// 
+
+[PARAMETERS]
+//#isInt?	#name	#dist.#min	#max	
+//all	Ns	are	in	number	of	haploid	individuals
+1	NPOP0	unif	5000	500000	output
+1	NPOP1	unif	5000	500000	output
+1	Na12	logunif	10000	800000	output
+0	NM01	logunif	1e-3	2	output
+0	NM10	logunif	1e-3	2	output
+1	tchDiff1	unif	1000	225960	output
+1	tchDiff2	unif	1000	225960	output
+0	SC1	logunif	0.02	100	output
+0	SC2	logunif	0.02	100	output
+1	TDIV1	unif	1000	225960	output
+[RULES]
+tchDiff1 < TDIV1
+tchDiff2 < TDIV1
+[COMPLEX PARAMETERS]
+0	RESIZE1		=	Na12 / NPOP1	hide
+0	M01	=	NM01/NPOP0	output
+0	M10	=	NM10/NPOP1	output
+1	tch1		=	TDIV1	-	tchDiff1	output
+1	tch2		=	TDIV1	-	tchDiff2	output
+1	NaPOP0		=	NPOP0 * SC1	output
+1	NaPOP1		=	NPOP1 * SC2	output
+
+
+
+
+
+
+
